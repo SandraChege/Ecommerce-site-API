@@ -1,6 +1,7 @@
 // Display items from local storage
 const cartItemsContainer = document.querySelector(".cartitems");
 const cartTotal = document.querySelector(".cartTotal");
+const clearCart = document.querySelector(".clearcart");
 
 // Function to fetch and display cart items
 function displayCartItems() {
@@ -28,6 +29,29 @@ function displayCartItems() {
 
             total += productData.price;
             cartTotal.textContent = `$ ${total}`;
+            
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("remove-item-btn");
+            removeButton.textContent="Remove item"
+            cartItemsContainer.appendChild(removeButton);
+            removeButton.addEventListener("click", () => {
+              // Remove the product from the cart and update the local storage
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+                const productIndex = cart.indexOf(productId);
+                if (productIndex !== -1) {
+                    cart.splice(productIndex, 1);
+                    displayCartItems();
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                }
+              /**
+               * Mehod 2 of calling a function
+               */
+              // productToRemove = productId;
+              // removeItemsFromCart(productToRemove);
+            });
+            clearCart.addEventListener("click", () => {
+                clearCartItems(); 
+            })    
             })
             .catch((error) => {
             console.error("Error fetching product data from the API:", error);
@@ -37,6 +61,20 @@ function displayCartItems() {
         cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
         cartTotal.textContent = "Total:$0.00";
     }
+}
+    
+// function removeItemsFromCart(productId) {
+//     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+//     const productIndex = cart.indexOf(productId);
+//     if (productIndex !== -1) {
+//         cart.splice(productIndex, 1);
+//         localStorage.setItem("cart", JSON.stringify(cart));
+//         displayCartItems();
+//     }
+// }
+function clearCartItems() {
+    localStorage.clear("cart");
+    displayCartItems();
 }
 
 // Call the function to display cart items when the page loads
