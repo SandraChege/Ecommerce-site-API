@@ -7,6 +7,7 @@ const productCategoryList = document.querySelector(".product-category-list");
  * 3. split(".")[0] removes the extension(.html) and save jewelery
  */
 // Function to extract the category from the current page's URL
+
 function getCategoryFromURL() {
   const currentPage = window.location.href;
   const category = currentPage.split("/").pop().split(".")[0];
