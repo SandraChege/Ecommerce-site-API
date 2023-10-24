@@ -10,7 +10,12 @@ const productCategoryList = document.querySelector(".product-category-list");
 
 function getCategoryFromURL() {
   const currentPage = window.location.href;
-  const category = currentPage.split("/").pop().split(".")[0];
+  const category = currentPage
+    .split("/")
+    .pop()
+    .split(".")[0]
+    .replace(/-/g, " ");
+  console.log(category);
   return category;
 }
 

@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1>My shopping Cart</h1>
+    <header>
+        <nav class="navbar">
+            <button id="brandname"><a href="index.html">Haure Haven</a></button>
+            <button class="center">Learn More</button>
+            <button class="center">Neuro</button>
+            <div class="right">
+                <button>Sign in</button>
+                <button><a href="cart.html">Cart</a></button>
+            </div>
+        </nav>
+    </header>
+    <h1 class="productheading">My shopping Cart</h1>
     <div class="cartitems"></div>
-    <div><Button class="clearcart">Clear Cart</Button></div>
     <div class="cartTotal"></div>
+    <div><Button class="clearcart">Clear Cart</Button></div>
+
     <script src="./js/cart.js"></script>
 </body>
 </html>

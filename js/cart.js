@@ -10,30 +10,34 @@ function displayCartItems() {
 
     if (cart.length > 0) {
         cartItemsContainer.innerHTML = "";
-        let total = 0;
+        let mytotal = 0;
         cart.forEach((productId) => {
         // Fetch product details from the API using productId
         fetch(`https://fakestoreapi.com/products/${productId}`)
             .then((res) => res.json())
             .then((productData) => {
             const itemContainer = document.createElement("div");
-            itemContainer.classList.add("cart-item");
+            itemContainer.classList.add("cart-item-container");
             itemContainer.innerHTML = `
                             <img src="${productData.image}" alt="${productData.title}">
                             <h3>${productData.title}</h3>
                             <p>${productData.description}</p>
-                            <p class="price">Price: $${productData.price}</p>
+                            <p class="price">$${productData.price}</p>
                             <p>Rating:${productData.rating.rate}</p>
+                            <p>Quantity: {quantity}</p>
                         `;
+           
             cartItemsContainer.appendChild(itemContainer);
 
-            total += productData.price;
-            cartTotal.textContent = `$ ${total}`;
+            mytotal += (productData.price);
+            let total = mytotal.toFixed(2)
+            cartTotal.textContent = `Cart Total: $ ${total}`;
             
             const removeButton = document.createElement("button");
             removeButton.classList.add("remove-item-btn");
-            removeButton.textContent="Remove item"
-            cartItemsContainer.appendChild(removeButton);
+                removeButton.textContent = "Remove item";
+                itemContainer.appendChild(removeButton)
+        
             removeButton.addEventListener("click", () => {
               // Remove the product from the cart and update the local storage
                 const cart = JSON.parse(localStorage.getItem("cart")) || [];
