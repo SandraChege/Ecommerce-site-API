@@ -32,9 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function addtoCart(productId) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart.push(productId);
+      cart.push(productId);
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
+
   }
 
   // Fetch the product details using the specific productId

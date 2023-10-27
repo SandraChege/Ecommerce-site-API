@@ -14,7 +14,7 @@ function getCategoryFromURL() {
     .split("/")
     .pop()
     .split(".")[0]
-    .replace(/-/g, " ");
+    .replace(/-/g, " ")
   console.log(category);
   return category;
 }
